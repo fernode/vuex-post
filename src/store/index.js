@@ -1,5 +1,6 @@
 import Vue from "vue"
 import Vuex from "vuex"
+import axios from "axios"
 
 Vue.use(Vuex)
 
@@ -21,6 +22,22 @@ const store = new Vuex.Store({
         "thumbnailUrl": "https://via.placeholder.com/150/771796"
       },
     ]
+  },
+  mutations: {
+    getPhotos(state, payload) {
+      state.photos = payload
+    }
+  },
+  actions: {
+    async getPhotos({ commit }) {
+      try {
+        await axios.get("https://jsonplaceholder.typicode.com/photos?_page=0&_limit=5")
+        .then(response => commit("getPhotos", response.data))
+      }
+      catch (error) {
+        console.log(error)
+      }
+    }
   }
 })
 

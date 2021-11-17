@@ -10,6 +10,12 @@
           </figure>
         </li>
       </ul>
+
+      <div class="actions">
+        <button @click="$store.dispatch('getPhotos')">
+          Load more
+        </button>
+      </div>
     </div>
   </div>
 </template>
