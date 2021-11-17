@@ -1,17 +1,27 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="photos">
+      <ul>
+        <li v-for="photo in photos" :key="photo.id">
+          <figure>
+            <img :src="photo.url" :alt="photo.title"/>
+            <figcaption>{{ photo.title }}</figcaption>
+          </figure>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  computed: {
+    photos(){
+      return this.$store.state.photos
+    }
   }
 }
 </script>
@@ -24,5 +34,24 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.photos {
+  margin: 0 auto;
+  width: 90%;
+}
+
+.photos ul{
+  display: flex;
+  justify-content: space-between;
+}
+
+.photos li{
+  list-style: none;
+  max-width: 25%;
+}
+
+.photos img{
+  max-width: 100%;
 }
 </style>
