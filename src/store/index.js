@@ -37,6 +37,14 @@ const store = new Vuex.Store({
       catch (error) {
         console.log(error)
       }
+    },
+    getPhotoById({getters}, id) {
+      getters.getPhotoById(id)
+    }
+  },
+  getters: {
+    getPhotoById: state => id => {
+      return state.photos.find(photo => photo.id === parseInt(id))
     }
   }
 })
